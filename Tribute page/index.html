@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chris Coyier Tribute</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin: 10px 0 30px 0;
+      color: #bbb;
+    }
+
+    .play-button {
+      display: inline-block;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    .quote-section {
+      background-color: #fff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .quote-text {
+      flex: 1;
+      font-size: 1.5em;
+      text-align: left;
+    }
+
+    .quote-img {
+      flex: 1;
+      text-align: right;
+    }
+
+    .quote-img img {
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    .biography-section {
+      padding: 50px 20px;
+      margin-top: 20px;
+    }
+
+    .biography-section h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .biography-section p {
+      font-size: 1.1em;
+      color: #ccc;
+      text-align: justify;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    hr {
+      margin: 40px auto;
+      width: 50%;
+      border-color: #444;
+    }
+
+    @media(max-width: 768px) {
+      .quote-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .quote-text, .quote-img {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chris Coyier</h1>
+    <h2>1979</h2>
+    <div class="play-button">&#9654;</div>
+
+    <div class="quote-section">
+      <div class="quote-text">
+        <p>The Web Platform is a beautiful mess.</p>
+      </div>
+      <div class="quote-img">
+        <img src="chris.jpeg" alt="Chris Coyier">
+      </div>
+    </div>
+
+    <div class="biography-section">
+      <h3>Biography</h3>
+      <p>
+        Chris Coyier is a well-known web designer, front-end developer, and educator, famous for making web development approachable and inspiring for millions of developers. He is the creator of CSS-Tricks, a popular blog he launched in 2007 that became a go-to resource for tutorials, tips, and examples in HTML, CSS, and JavaScript. He is also the co-founder of CodePen, an online code playground for testing and sharing front-end code, and the co-host of the long-running podcast ShopTalk Show, where he discusses web design and development topics with industry experts. Over the years, Chris has contributed greatly to the web development community by consistently writing, speaking at conferences, and building tools that empower developers. Originally from Wisconsin and now based in Oregon, he continues to inspire developers worldwide with his passion for creating, teaching, and improving the web.
+      </p>
+      <hr>
+    </div>
+  </div>
+</body>
+</html>
