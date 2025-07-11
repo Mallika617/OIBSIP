@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <div id="expression"></div>
+      <div id="result">0</div>
+    </div>
+    <div class="buttons">
+      <button onclick="appendValue('(')">(</button>
+      <button onclick="appendValue(')')">)</button>
+      <button onclick="useAns()">ans</button>
+      <button onclick="deleteChar()">del</button>
+      <button onclick="clearDisplay()">clear</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('%')">%</button>
+      <button onclick="appendValue('√(')">√</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('*')">x</button>
+      <button onclick="appendValue('/')">÷</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('+')">+</button>
+      <button onclick="appendValue('-')">−</button>
+
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="toggleSign()">±</button>
+      <button class="enter" onclick="calculate()">ENTER</button>
+    </div>
+  </div>
+
+  <script>
+    let expression = "";
+    let ans = 0;
+
+    function appendValue(value) {
+      if (value === "√(") {
+        expression += "Math.sqrt(";
+      } else {
+        expression += value;
+      }
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById("expression").innerText = expression;
+    }
+
+    function calculate() {
+      try {
+        const result = eval(expression);
+        ans = result;
+        document.getElementById("result").innerText = result;
+      } catch {
+        document.getElementById("result").innerText = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      expression = "";
+      document.getElementById("expression").innerText = "";
+      document.getElementById("result").innerText = "0";
+    }
+
+    function deleteChar() {
+      expression = expression.slice(0, -1);
+      updateDisplay();
+    }
+
+    function useAns() {
+      expression += ans;
+      updateDisplay();
+    }
+
+    function toggleSign() {
+      if (expression) {
+        expression = `-1*(${expression})`;
+        updateDisplay();
+      }
+    }
+  </script>
+</body>
+</html>
