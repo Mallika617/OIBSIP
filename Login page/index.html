@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Authentication System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #419044;
+      color: rgb(2, 2, 2);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      color: red;
+    }
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .link a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="loginContainer">
+    <h2>User Authentication</h2>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <div class="message" id="loginMessage"></div>
+    <div class="link">
+      Don't have an account? <a href="#" onclick="showRegister()">Register</a>
+    </div>
+  </div>
+
+  <div class="container" id="registerContainer" style="display:none;">
+    <h2>User Authentication</h2>
+    <input type="text" id="registerUsername" placeholder="Username" />
+    <input type="password" id="registerPassword" placeholder="Password" />
+    <button onclick="register()">Register</button>
+    <div class="message" id="registerMessage"></div>
+    <div class="link">
+      Already have an account? <a href="#" onclick="showLogin()">Login</a>
+    </div>
+  </div>
+
+  <div class="container" id="securedPage" style="display:none;">
+    <h2>Welcome!</h2>
+    <p>You have successfully logged in.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginContainer").style.display = "none";
+      document.getElementById("registerContainer").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("registerContainer").style.display = "none";
+      document.getElementById("loginContainer").style.display = "block";
+    }
+
+    function register() {
+      const username = document.getElementById("registerUsername").value;
+      const password = document.getElementById("registerPassword").value;
+
+      if (username === "" || password === "") {
+        document.getElementById("registerMessage").innerText = "All fields are required!";
+        return;
+      }
+
+      if (localStorage.getItem(username)) {
+        document.getElementById("registerMessage").innerText = "User already exists!";
+        return;
+      }
+
+      localStorage.setItem(username, password);
+      document.getElementById("registerMessage").innerText = "Registration successful! You can now login.";
+    }
+
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      const storedPassword = localStorage.getItem(username);
+
+      if (storedPassword === null) {
+        document.getElementById("loginMessage").innerText = "User not found!";
+      } else if (storedPassword === password) {
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("securedPage").style.display = "block";
+      } else {
+        document.getElementById("loginMessage").innerText = "Incorrect password!";
+      }
+    }
+
+    function logout() {
+      document.getElementById("securedPage").style.display = "none";
+      document.getElementById("loginContainer").style.display = "block";
+      document.getElementById("loginUsername").value = "";
+      document.getElementById("loginPassword").value = "";
+      document.getElementById("loginMessage").innerText = "";
+    }
+  </script>
+</body>
+</html>
